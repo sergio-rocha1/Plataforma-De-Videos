@@ -3,7 +3,8 @@ package br.com.plataforma.modelos;
 public class Video implements Acoes {
 
 	private String titulo;
-	private int avaliacao;
+	private float avaliacao;
+	private static int totalAvaliado;
 	private int views;
 	private int curtidas;
 	private boolean reproduzindo;
@@ -14,6 +15,7 @@ public class Video implements Acoes {
 		this.views = 0;
 		this.curtidas = 0;
 		this.reproduzindo = false;
+		Video.totalAvaliado = 0;
 	}
 	
 	public String getTitulo() {
@@ -24,20 +26,21 @@ public class Video implements Acoes {
 		this.titulo = titulo;
 	}
 	
-	public int getAvaliacao() {
+	public float getAvaliacao() {
 		return avaliacao;
 	}
 	
-	public void setAvaliacao(int avaliacao) {
-		this.avaliacao = avaliacao;
+	public void recebeAvaliacao(float avaliacao) {
+		Video.totalAvaliado++;
+		this.avaliacao = (this.avaliacao + avaliacao) / Video.totalAvaliado;
 	}
 	
 	public int getViews() {
 		return views;
 	}
 	
-	public void setViews(int views) {
-		this.views = views;
+	public void recebeView() {
+		this.views++;
 	}
 	
 	public int getCurtidas() {
@@ -77,4 +80,9 @@ public class Video implements Acoes {
 				+ ", Avaliação: " + this.avaliacao
 				+ ", Views: " + this.views;
 	}
+	
+	public int getTotalAvaliado() {
+		return Video.totalAvaliado;
+	}
+
 }

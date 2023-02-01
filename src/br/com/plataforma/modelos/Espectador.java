@@ -21,6 +21,10 @@ public class Espectador extends Pessoa {
 		return this.experiencia;
 	}
 	
+	public void visualiza() {
+		this.totalAssistido++;
+	}
+	
 	@Override
 	public String toString() {
 		return "Nome: " + this.nome + ", \nidade: " + this.idade + ", \nexperiencia: " + this.experiencia;
